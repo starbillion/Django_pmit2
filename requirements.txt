@@ -1,0 +1,9 @@
+django-hijack
+django-hijack-admin
+social-auth-app-django
+django-admin-interface
+python-decouple
+django-bootstrap4
+humanize
+django-avatar
+

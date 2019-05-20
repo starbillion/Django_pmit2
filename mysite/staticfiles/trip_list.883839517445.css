@@ -1,0 +1,305 @@
+/* Reset css */
+
+html { font-size: 16px; }
+html, body, h1, h2, h3, h4, h5, h6, ul, li, p { margin:0;padding:0; }
+h1, h2, h3, h4, h5, h6, p, span, em, label, a, figcaption { letter-spacing:1px; }
+a,a:hover { text-decoration:none;transition:0.5s all;-webkit-transition:0.5s all;-moz-transition:0.5s all;-o-transition:0.5s all;-ms-transition:0.5s all; }
+a:focus { text-decoration:none; }
+li { list-style:none; }
+
+/* End */
+
+/* Font Family */
+
+@font-face{
+	font-family:'Open-Bold';
+	src:url("/static/fonts/OpenSans-Bold.50145685042b.ttf");
+}
+
+@font-face{
+	font-family:'Open-SemiBold';
+	src:url("/static/fonts/OpenSans-Semibold.33f225b8f5f7.ttf");
+}
+
+@font-face{
+	font-family:'Open-Light';
+	src:url("/static/fonts/OpenSans-Light.1bf71be11118.ttf");
+}
+
+@font-face{
+	font-family:'Open-Regular';
+	src:url("/static/fonts/OpenSans-Regular.629a55a7e793.ttf");
+}
+
+@font-face{
+	font-family:'Open-LightItalic';
+	src:url("/static/fonts/OpenSans-LightItalic.6943fb6fd420.ttf");
+}
+
+@font-face{
+	font-family:'Roboto-Bold';
+	src:url("/static/fonts/Roboto-Bold.ee7b96fa85d8.ttf");
+}
+/* End */
+
+body { background: #f6f7fb; }
+
+/* Navigationbar */
+h4.resort-names {display: inline-block;}
+.img-user { display: inline; }
+.navbar-inside { 
+	min-height: 70px;
+	margin-bottom: 0;
+	background: #fff;
+	border: 0px solid transparent;
+	border-color: transparent;
+}
+.user-menu { padding: 0; }
+.user-menu > li > a,.navbar-rights-inside > li > a {
+	color: #4c4c4c;
+	font-family:'Open-Light';
+	font-size: 1rem;
+}
+.navbar-rights-inside > li > a:hover { background-color: #1b75bc !important;color: #fff !important; }
+.user-menu > li > a:hover { background-color: #1b75bc;color: #fff; }
+.navbar-rights-inside>li>a>img { margin-right: 10px; }
+.navbar-rights-inside { margin-right: 0; }
+
+/* End */
+
+/* Panel and Tab */
+
+.panelde-inside { 
+	margin:50px 15px 30px;
+	border-color: transparent;
+	border: 0px solid transparent;
+	box-shadow: none;
+}
+.panelde-inside > .panel-heading { background: #fff;border-color: #eee; }
+.panel-headings-inside { 
+	padding: 15px;
+	border-bottom: 2px solid #eee; 
+	border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.trips-inside > h3 {
+	font-family:'Roboto-Bold';
+	color: #333333;
+	font-size: 1.1rem;
+	text-transform: uppercase;
+}
+.btnaddresortie {
+	background: #f7931e;
+	border: 1px solid #f7931e;
+	color: #fff;
+	font-family:'Open-Regular';
+	letter-spacing: 1px;
+	z-index: 999;
+	position:relative;
+}
+.btnaddresortie:hover,.btnaddresortie:active:hover {
+	background: #1c75bc;
+	border:1px solid #1c75bc;
+	color: #fff;
+	transition: 0.5s;
+}
+.btnaddresortie:focus,.btnaddresortie:active:focus {
+	background: #f7931e;
+	border:1px solid #f7931e;
+	color: #fff;
+	outline: 0;
+	box-shadow: none;
+	transition: 0.5s;
+}
+.add-resort-btn-posi { float: right; }
+.media-inside-img { height: 120px;width: 185px; }
+.resort-names {
+	color: #3d3d3d;
+	font-family:'Open-Regular';
+	font-size: 1.2rem;
+	margin-bottom: 10px;
+}
+.resort-desc { 
+	color: #919292;
+	font-family:'Open-Light';
+	font-size: 0.9rem;
+	margin-bottom: 10px;
+}
+.resort-location {
+	margin-left: 15px;
+	color: #6d6d6d;
+	font-family:'Open-Regular';
+	font-size: 0.9rem;
+}
+.dri, .resort-notes {
+	color: #6d6d6d;
+	font-family:'Open-Regular';
+	font-size: 0.9rem;
+}
+.dri-numie {
+	color: #919292;
+	font-family:'Open-Regular';
+	font-size: 0.9rem;
+}
+.btnfamily {
+	background: #1b75bc;
+	border:1px solid #1b75bc;
+	color: #fff;
+	font-family:'Open-Regular';
+	font-size: 1rem;
+	transition: 0.5s;
+}
+.btnfamily:hover,.btnfamily:active:hover {
+	background: #f7931e;
+	border:1px solid #f7931e;
+	color: #fff;
+	transition: 0.5s;
+}
+.btnfamily:focus,.btnfamily:active:focus {
+	background: #1b75bc;
+	border:1px solid #1b75bc;
+	color: #fff;
+	outline: 0;
+	box-shadow: none;
+	transition: 0.5s;
+}
+.dri-btnie-1 { float: left;width: 20%;margin-top: 15px; }
+.dri-btnie-2 { float: left;width: 80%; }
+.all-icons-inside-1,.all-icons-inside-2,.all-icons-inside-3,.all-icons-inside-4  { float: left;width: 33.33%;text-align: center; }
+.all-icons-inside-1>a>i,.all-icons-inside-2>a>i,.all-icons-inside-3>a>i,.all-icons-inside-4>a>i {
+	color: #b6b6b6;
+}
+.resort-value-insides { 
+	color: #1b75bc;
+	font-family:'Open-Bold';
+	font-size: 1.5rem;
+}
+.match-save {
+	font-family:'Open-Regular';
+	font-size: 1.1rem;
+}
+.match-save-dollar {
+	color: green;
+	font-family:'Open-SemiBold';
+	font-size: 1.5rem;
+	margin-left: 30px;
+}
+.media-lefts-inside { padding-right: 20px; }
+.btnjuly {
+	background: #e3e3e3;
+	border:1px solid #e3e3e3;
+	color: #353535;
+	font-family:'Open-Bold';
+	font-size: 1rem;
+	letter-spacing: 1px;
+	transition: 0.5s;
+}
+.btnjuly:hover,.btnjuly:active:hover {
+	background: #000;
+	border:1px soldid #000;
+	color: #fff;
+	transition: 0.5s;
+}
+.btnjuly:focus,.btnjuly:active:focus {
+	background: #e3e3e3;
+	border:1px solid #e3e3e3;
+	color: #353535;
+	outline: 0;
+	box-shadow: none;
+	transition: 0.5s;
+}
+.july-desc { margin-top: 15px;margin-bottom: 15px; }
+.july-dates {
+	color: #6d6d6d;
+	font-family:'Open-Regular';
+	font-size: 0.9rem;
+}
+.july-dates-oie { 
+	text-align: center;
+    display: inline-block;
+    padding: 0 10px;
+}
+.guests {
+	color: #6d6d6d;
+	font-family:'Open-Regular';
+	font-size: 0.9rem;
+}
+.adults-numie {
+	color: #353535;
+	font-family:'Open-SemiBold';
+	font-size: 1rem;
+}
+.guets-numie {
+	color: #919292;
+	font-family:'Open-Light';
+	font-size: 0.9rem;
+}
+.ocen-inside {
+	color: #6d6d6d;
+	font-family:'Open-Regular';
+	font-size: 0.9rem;
+	margin-top: 15px;
+}
+.inside-hrie { margin-top: 20px;margin-bottom: 20px;border-top:2px solid #eeeeee; }
+.margi-minus-inside { margin-top: -45px !important; }
+
+/* End */
+
+/* Footer */
+
+.copyrights-inside { 
+	color: #969696;
+	font-family:'Open-SemiBold';
+	font-style: italic;
+	font-size: 0.9rem;
+	margin-bottom: 30px;
+}
+.price-matchitie-inside {
+	color: #f8931e;
+}
+.price-matchitie-inside:hover,.price-matchitie-inside:active:hover { color: #1b75bc; }
+.social-icons-inside { float: right; }
+.social-icons-inside>a>i { color: #afadad;font-size:1rem;padding: 0px 5px; }
+
+/* End */
+
+/* Media Query */
+
+@media only screen and (max-width:767px) {
+
+	.margi-minus-inside { margin-top: 0px !important; }
+	.add-resort-btn-posi {
+	    float: none;
+	    text-align: center;
+	    margin-bottom: 15px;
+	}
+	.resp-tabs-container>h2:nth-child(5) { display: none; }
+	.media-lefts-inside { display: block; }
+	.media-inside-img { height: auto;width: 100%;margin-bottom: 15px; }
+	.media-lefts-inside { padding-right: 0; }
+	.resp-tab-content { padding: 15px !important; }
+	.resort-desc { margin-bottom: 15px; }
+	.dri-btnie-1 { width: 35%; }
+	.dri-btnie-2 { width: 65%; }
+	.julydates-mob { display: block;text-align: center;margin-bottom: 15px; }
+	.btnfamily { font-size: 0.9rem; }
+	.btnaddresortie,.resort-value-insides,.match-save-dollar { font-size: 1rem; }
+	.resort-names { font-size: 1.1rem; }
+	.resort-desc { text-align: justify; }
+	.btnjuly-one-mob { display: block;margin-bottom: 15px;text-align: center; }
+	.to-mob { display: block;text-align: center;margin-bottom: 15px; }
+	.match-save { margin-top: 15px; }
+	.match-save-dollar { margin-bottom: 15px; margin-left: 15px;}
+}
+
+@media screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 360px) 
+  and (-webkit-device-pixel-ratio: 2) {
+
+  	.btnfamily { font-size: 0.7rem; }
+  	.dri-btnie-1 { margin-top: 10px;width: 37%; }
+  	.dri-btnie-2 { width: 63%; }
+}
+
+/* End */

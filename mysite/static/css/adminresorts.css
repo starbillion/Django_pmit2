@@ -1,0 +1,343 @@
+/* Reset css */
+
+html { font-size: 16px; }
+html, body, h1, h2, h3, h4, h5, h6, ul, li, p { margin:0;padding:0; }
+h1, h2, h3, h4, h5, h6, p, span, em, label, a, figcaption { letter-spacing:1px; }
+a,a:hover { text-decoration:none;transition:0.5s all;-webkit-transition:0.5s all;-moz-transition:0.5s all;-o-transition:0.5s all;-ms-transition:0.5s all; }
+a:focus { text-decoration:none; }
+li { list-style:none; }
+
+/* End */
+
+/* Font Family */
+
+@font-face{
+	font-family:'Open-Bold';
+	src:url("../fonts/OpenSans-Bold.ttf");
+}
+
+@font-face{
+	font-family:'Open-SemiBold';
+	src:url("../fonts/OpenSans-Semibold.ttf");
+}
+
+@font-face{
+	font-family:'Open-Light';
+	src:url("../fonts/OpenSans-Light.ttf");
+}
+
+@font-face{
+	font-family:'Open-Regular';
+	src:url("../fonts/OpenSans-Regular.ttf");
+}
+
+@font-face{
+	font-family:'Open-LightItalic';
+	src:url("../fonts/OpenSans-LightItalic.ttf");
+}
+
+@font-face{
+	font-family:'Roboto-Bold';
+	src:url("../fonts/Roboto-Bold.ttf");
+}
+
+/* End */
+
+/* Navigationbar */
+
+.img-user { display: inline;width: 26%; }
+.navbar-inside { 
+	min-height: 90px;
+	margin-bottom: 0;
+	background: #fff;
+	border: 0px solid transparent;
+	border-color: transparent;
+	z-index: 999999;
+}
+.nav-brands-inside { padding: 15px 30px; }
+.user-menu { padding: 0; }
+.user-menu > a,.navbar-rights-inside > li > a {
+	color: #4c4c4c !important;
+	font-family:'Open-Light';
+	font-size: 0.9rem;
+}
+.navbar-rights-inside > li > a:hover { background-color: #1b75bc !important;color: #fff !important; }
+.navbar-dark .navbar-nav .show>.nav-link { background-color: #1b75bc !important;color: #fff !important; }
+.user-menu > a:hover { background-color: #1b75bc !important;color: #fff !important; }
+.navbar-rights-inside>li>a>img { margin-right: 10px; }
+.navbar-rights-inside { margin-right: 15px; }
+.nav-fixed-color-change.scrolled {
+   background-color:#2f98f5 !important;
+   transition: background-color 200ms linear;
+}
+.nav-fixed-color-change.scrolled .navbar-rights-inside>li>a { color: #fff !important; }
+
+	/* Dropdown Menu */
+
+	.profile_img span.prfil-img {
+	    float: left;
+	}
+	.user-name {
+	    float: left;
+	    margin-top: 8px;
+	    margin-left: 11px;
+	    height: 35px;
+	}
+	.user-name p {
+		font-family:'Open-SemiBold';
+	    font-size: 1.2em;
+	    color: #222;
+	    line-height: 1em;
+	    margin-top: 5px;
+	    margin-bottom: 5px;
+	}
+	.user-name span {
+		font-family:'Open-Light';
+	    font-size: 1em;
+	    color: #424f63;
+	}
+	.navbar-rights-inside > li > a:hover .user-name p,.navbar-rights-inside > li > a:hover .user-name span { color: #fff; }
+	.navbar-rights-inside > li > a:focus .user-name p,.navbar-rights-inside > li > a:focus .user-name span { color: #fff; }
+	.dropdown-toggle::after { display: none; }
+
+	/* End */
+
+/* End */
+
+/* Sidebar Menu */
+
+body {
+   	position: relative;
+   	padding-top: 90px;
+   	background-color: #f6f7fb;
+}
+.navbar-fixed { 
+	position: fixed;
+	left: 0;
+	width: 16.66666667%;
+	height: 100vh;
+	background-color: #242a33 !important;
+	border-color: #242a33;
+	border-radius: 0;
+	align-items: baseline;
+	padding: 0;
+}
+.navbar-vertical .nav-link { padding-left: 15px;padding-right: 15px; }
+.navbar-vertical>li { float: none;margin-bottom: 10px; }
+.navbar-vertical>li>a { 
+	color: #fff !important;
+	font-family:'Open-Regular';
+	font-size: 1rem;
+	border-left: 4px solid #242a33;
+}
+.navbar-vertical { margin-top: 50px; }
+.navbar-vertical>li>a:hover { color: #f7941e !important;letter-spacing: 2px;border-left: 4px solid #1c75bc; }
+.collapse-resorts-verticalie { padding: 0px; }
+.hide-desktopie { display: none; }
+.navbar-vertical>li:first-child { display: none; }
+
+/* End */
+
+/* Tab Section */
+
+.panel-adminresultie>.card-header {
+	background-color: #fff;
+	color: #333333;
+	font-family:'Roboto-Bold';
+	font-size: 1.2rem;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+.panel-adminresultie { margin: 30px 15px;border-color: transparent; }
+.panel-headings-adminresortie { border-bottom:1px solid #eee; }
+.add-resort-btn-posi {
+    float: right;
+    position: relative;
+    z-index: 9999;
+}
+.btnadminresortie {
+	background: #f7931e;
+	border: 1px solid #f7931e;
+	color: #fff;
+	font-family:'Open-Regular';
+	letter-spacing: 1px;
+}
+.btnadminresortie:hover,.btnadminresortie:active:hover {
+	background: #1c75bc;
+	border:1px solid #1c75bc;
+	color: #fff;
+	transition: 0.5s;
+}
+.btnadminresortie:focus,.btnadminresortie:active:focus {
+	background: #f7931e;
+	border:1px solid #f7931e;
+	color: #fff;
+	outline: 0;
+	box-shadow: none;
+	transition: 0.5s;
+}
+.margi-minus-adminresorts { margin-top: -45px !important; }
+
+	/* Table */
+
+	.table-bordered>thead>tr>th { 
+		color: #414141;
+		font-family:'Open-Regular';
+		letter-spacing: 1px;
+		font-size: 1rem;
+		background: #f0f0f0; /* For browsers that do not support gradients */
+    	background: linear-gradient(#fbfbfb,#f8f8f8,#f0f0f0); /* Standard syntax (must be last) */
+	}
+	.table-bordered>tbody>tr>td {
+		color: #919292;
+		font-family:'Open-Light';
+		letter-spacing: 1px;
+		font-size: 0.9rem;
+		height: 37px;
+	}
+	.table-remove-margin-adminresorts { margin-bottom: 0; }
+	.fa-edit-adminresorts { color: #00b050; }
+
+	/* End */
+
+/* End */
+
+/* Footer */
+
+.copyright-addresorts {
+	color: #969696;
+    font-family: 'Open-SemiBold';
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+.copyright-addresorts>a { color: #f8931e; }
+.copyright-addresorts>a:hover { color: #1b75bc; }
+.social-icons-addresorts {
+    float: right;
+    margin-right: 15px;
+}
+.social-icons-addresorts>a>i {
+    color: #afadad;
+    font-size: 1rem;
+    padding: 0px 5px;
+    transition: 0.5s;
+}
+.social-icons-addresorts>a>i:hover {
+    transform: rotate3d(10,10,10,360deg);
+    transition: 0.5s;
+}
+
+/* End */
+
+/* Media Query */
+
+@media only screen and (min-width: 992px) and (max-width:1199px) {
+
+	.hide-desktopie { display: none; }
+	.margi-minus-adminresorts { margin-top: -48px !important; }
+
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px) {
+
+	.img-user { width: 25%; }
+	.navbar-rights-inside > li > a,.copyrights-add-trip { font-size: 0.9rem; }
+	.hide-desktopie { display: none; }
+	.navbar-fixed { width: 25%; }
+	.margi-minus-adminresorts { margin-top: -48px !important; }
+}
+
+@media only screen and (min-width: 576px) and (max-width:767px) {
+
+	.navbar-fixed { width: 25%; }
+
+	/* Tab */
+
+	.margi-minus-adminresorts { margin-top: 0 !important; }
+	.btnadminresortie { margin-bottom: 15px;font-size: 1rem; }
+	.add-resort-btn-posi { float: none;text-align: center; }
+	.panel-adminresultie>.card-header { font-size: 1.1rem; }
+	.resp-tabs-container>h2:nth-child(5) { display: none; }
+	.resp-tab-content { border: 1px solid #c1c1c1 !important; }
+	.table-res-adminresorts { margin-bottom: 0; }
+
+	/* End */
+
+
+	.panel-mapping-heads { margin: 30px 15px; }
+	.panel-add-room-heads { margin: 0 15px; }
+	.copyright-addresorts { text-align: center;margin-left: 0; }
+	.social-icons-addresorts { float: none;margin-right: 0;text-align: center;margin-bottom: 30px; }
+
+}
+
+@media only screen and (max-width:575px) {
+
+	.navbar-collaie { border-color:transparent !important; }
+	.img-logo-twos { width: 80%; }
+	.navbar-collaie { border-color:transparent !important;box-shadow: none; }
+	.img-user { width: 15%; }
+	.user-menu { background-color:#ffba68 !important; }
+	.navbar-toggle-inside { margin-top: 15px; }
+	.navbar-inside .navbar-toggle-inside { border-color: #1e78bf; }
+	.navbar-inside .navbar-toggle-inside .icon-bar { background-color: #f7931e; }
+	.copyright-addresorts { margin-left: 0;text-align: center;margin-bottom: 15px; }
+	.social-icons-addresorts { float: none;margin-right: 0;text-align: center;margin-bottom: 15px; }
+	.navbar-inside .navbar-toggler { border-color: rgb(149, 177, 202); }
+	.panel-adminresultie { margin: 15px 0; }
+
+	/* Tab */
+
+	.margi-minus-adminresorts { margin-top: 0 !important; }
+	.btnadminresortie { margin-bottom: 15px;font-size: 1rem; }
+	.add-resort-btn-posi { float: none;text-align: center; }
+	.panel-adminresultie>.panel-heading { font-size: 1.1rem; }
+	.resp-tabs-container>h2:nth-child(5) { display: none; }
+	.resp-tab-content { border: 1px solid #c1c1c1 !important; }
+	.table-res-adminresorts { margin-bottom: 0; }
+
+	/* End */
+
+	/* Mobile Sidebar Menu */
+
+	.navbar-fixed {
+	    width: 0;
+	    height: 35vh;
+	    background-color: transparent;
+	    border-color: transparent;
+	}
+	.hide-desktopie { display: block; }
+	.mobiocn { font-size: 1rem; }
+	.mob-show {
+	    height: 50px;
+    	width: 50px;
+   		line-height: 50px;
+    	background: #000;
+    	padding: 10px 10px 10px;
+    	border-radius: 50%;
+	}
+	.mob-show i { color: #fff; }
+	.settings { margin-top: 15px; }
+	.navbar-vertical>li>a { display: inline-block;border-left: 4px solid transparent; }
+	.fa-mob-circles-resortie { font-size: 1.5rem; }
+	.navbar-vertical { margin-top: 0;display: none; }
+	.collapse-resorts-verticalie { padding: 15px; }
+
+	/* End */
+
+	/* Extra Changes */
+
+	.navbar-rights-inside > li > a { color: #fff !important; }
+	.navbar-rights-inside { margin: 0 0 15px; }
+	.nav-brands-inside { padding: 15px; }
+	.navbar-rights-inside .nav-link { padding-left: 15px; }
+	.navbar-inside { min-height: auto;background-color: #000; }
+	.navbar-vertical>li:first-child { display: block; }
+	.user-name p,.user-name span { color: #fff; }
+
+	/* End */
+}
+
+/* End */

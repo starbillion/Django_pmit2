@@ -1,0 +1,222 @@
+{% extends 'main.html' %}
+{% block main_panel %}
+    <!-- First Part Start -->
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <div class="signup-first">
+            <div class="panel-body panel-form">
+                {% for message in messages %}
+                    <p style="color: {% if message.tags == 'success' %}green{% elif message.tags == 'error' %}red{% endif %}">
+                        {{ message }}
+                    </p>
+                {% endfor %}
+                {% if user.is_authenticated %}
+                    <p>You are signed in as<br/>
+                        <strong>{{ user.first_name }} {{ user.last_name }} </strong><br/>
+                        ({{ user.email }})
+                        <br/>
+                        <a href="{% url 'trips:all' %}">Trips</a>
+                        <a href="{% url 'home' %}">home</a>
+                        <br/>
+                        <a href="{% url 'settings' %}">settings</a>
+                        <br/>
+                        <a href="{% url 'password' %}">change password</a>
+                        <br/>
+                        <a href="{% url 'logout' %}">logout</a>
+                        <br/>
+                    </p>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/> {% else %}
+                    <p>
+                        <a href="{% url 'login' %}">Sign in</a>
+                    </p>
+                    <p>or</p>
+                    <p>Create an Account</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        {#                        {{ form.as_ul }}#}
+                        {% if form.errors %}
+                            <label for="id_username" class="password1" style="color: red">
+                                {{ form.errors }}
+                            </label>
+                        {% endif %}
+                        <input type="hidden" id="trip_cnt" name="trip_cnt" value="3">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-login" id="id_username" placeholder="Username"
+                                   name="username" autocomplete="off">
+                            <label for="id_username" class="username" style="display:none;color: red">Please Enter Your
+                                Username</label>
+                            <label for="id_username" class="username-length">Username should have at least 5
+                                Characters</label>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-login" id="id_first_name"
+                                           placeholder="First name"
+                                           name="first_name" autocomplete="off"
+                                           autofocus>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-login" id="id_last_name"
+                                           placeholder="Last name"
+                                           name="last_name" autocomplete="off"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="email" class="form-control form-login" id="id_email" placeholder="Email"
+                                   name="email" autocomplete="off"
+                                   style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"
+                                   required>
+                            <label for="id_username" class="email_input" style="display:none;color: red">Please Enter
+                                Your Email</label>
+                            <label for="id_email" class="email" style="display:none;color: red">Email format is
+                                wrong</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control form-login" id="id_password"
+                                   placeholder="Password" name="password1" autocomplete="off"
+                                   style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"
+                                   required>
+                            <label for="id_username" class="password1" style="display:none;color: red">Please Enter Your
+                                Password</label>
+                            <label for="id_password" class="password-length">Password should have at least 8
+                                Characters</label>
+                        </div>
+                        <div class="form-group form-group-2">
+                            <input type="password" class="form-control form-login" id="id_password2"
+                                   placeholder="Password Confirmation" name="password2" autocomplete="off"
+                                   style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAAPhJREFUOBHlU70KgzAQPlMhEvoQTg6OPoOjT+JWOnRqkUKHgqWP4OQbOPokTk6OTkVULNSLVc62oJmbIdzd95NcuGjX2/3YVI/Ts+t0WLE2ut5xsQ0O+90F6UxFjAI8qNcEGONia08e6MNONYwCS7EQAizLmtGUDEzTBNd1fxsYhjEBnHPQNG3KKTYV34F8ec/zwHEciOMYyrIE3/ehKAqIoggo9inGXKmFXwbyBkmSQJqmUNe15IRhCG3byphitm1/eUzDM4qR0TTNjEixGdAnSi3keS5vSk2UDKqqgizLqB4YzvassiKhGtZ/jDMtLOnHz7TE+yf8BaDZXA509yeBAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: auto;"
+                                   required>
+                            <label for="id_username" class="password2" style="display:none;color: red">Please Your
+                                Password Again</label>
+                            <label for="id_password2" class="password-length2" style="display:none;color: red">Password
+                                should be matched</label>
+                        </div>
+
+                        <div class="btn-center">
+                            <input type="submit" class="btn btn-lg btn-default btnsignin" id="signup" value="SIGN UP">
+                        </div>
+                        <p class="or-signup">or</p>
+                        <div class="btn-center">
+                            <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-block btn-social btn-facebook">
+                                <span class="fab fa-facebook-f" aria-hidden="true"></span> Sign Up with Facebook
+                            </a>
+                        </div>
+                        <div class="btn-center">
+                            <br/>
+                        </div>
+                        <div class="btn-center">
+                            <a href="{% url 'social:begin' 'google-oauth2' %}"
+                               class="btn btn-block btn-social btn-google">
+                                <span class="fab fa-google"></span> Sign Up with Google
+                            </a>
+                        </div>
+
+                    </form>
+
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- First Part End -->
+{% endblock %}
+
+{% block css_scripts %}
+
+    <script>
+        $(document).ready(function () {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+            $("#signup").click(function () {
+                var id_username = $("#id_username").val();
+                if (id_username == "") {
+                    $(".username").css("display", "block");
+                    return false;
+                }
+                else {
+                    $(".username").css("display", "none");
+                }
+
+                var id_email = $("#id_email").val();
+                if (id_email == "") {
+                    $(".email_input").css("display", "block");
+                    return false;
+                }
+                else {
+                    $(".email_input").css("display", "none");
+                }
+                var pwd = $("#id_password").val().length;
+                if (pwd == "") {
+                    $(".password1").css("display", "block");
+                    return false;
+                }
+                if (pwd < 8) {
+                    $(".password1").css("display", "none");
+                    $(".password-length").css("display", "none");
+                    return false;
+                }
+                var pwd = $("#id_password2").val().length;
+                if (pwd == "") {
+                    $(".password2").css("display", "block");
+                    return false;
+                }
+                if (pwd < 8) {
+                    $(".password2").css("display", "none");
+                    $(".password-length2").css("display", "none");
+                    return false;
+                }
+                else {
+                    $(".password-length").css("display", "none");
+                    return true;
+                }
+            });
+            $("#id_username").keyup(function () {
+                var id_username = $(this).val().length;
+
+                if (id_username < 5) {
+                    $(".username-length").css("display", "block");
+                }
+                else {
+                    $(".username-length").css("display", "none");
+                }
+            });
+            $("#id_email").keyup(function () {
+                var id_email = $(this).val();
+
+                if (!id_email.match(re)) {
+                    $(".email").css("display", "block");
+                }
+                else {
+                    $(".email").css("display", "none");
+                }
+            });
+            $("#id_password").keyup(function () {
+                var pwd = $(this).val().length;
+                if (pwd < 8) {
+
+                    $(".password-length").css("display", "block");
+                }
+                else {
+                    $(".password-length").css("display", "none");
+                }
+            });
+            $("#id_password2").keyup(function () {
+                var pwd = $(this).val().length;
+                if (pwd < 8) {
+                    $(".password-length2").css("display", "block");
+                }
+                else {
+                    $(".password-length2").css("display", "none");
+                }
+            });
+        });
+    </script>
+{% endblock %}

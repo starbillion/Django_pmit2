@@ -1,0 +1,439 @@
+{% extends 'inside_main.html' %} {% block body %}
+    {% load humanize %}
+    {% load bootstrap4 %}
+    <!-- Panel and Tab -->
+
+    <div class="row">
+        <div class="col-xl-8 col-lg-6 col-md-6 col-sm-12">
+            <div class="card pane-defau-trip">
+                <div class="card-header">add trip</div>
+                <div class="card-body">
+                    <form role="form" method="POST" class="post-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="pricevalue" class="label-addtrip">Current Price (USD)</label>
+                                    <input type="number" class="form-control form-addtrip" id="pricevalue"
+                                           name="pricevalue" min="0"
+                                           max="25000" placeholder="$" required/>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="reservationnum" class="label-addtrip">Reservation Number</label>
+
+                                    <input type="text" class="form-control form-addtrip"
+                                           placeholder="Reservation Number" maxlength="500" name="reservationnum"
+                                           id="reservationnum"
+                                           required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                                {#                                <div class="form-group">#}
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <input type="checkbox" style="margin-top: 10px;"
+                                               class="form-control form-addtrip" id="canada" name="canada">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <label class="label-addtrip" for="canada">Include Canadian Sites</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                                <div class="form-group form-group-notes">
+                                    <label for="reservationnotes" class="label-addtrip">Reservation Notes</label>
+                                    <input type="text" class="form-control form-addtrip"
+                                           placeholder="family trip, vacation..." maxlength="500"
+                                           name="reservationnotes" id="reservationnotes"
+                                           required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                                {#                                <div class="form-group">#}
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <input type="checkbox" style="margin-top: 10px;"
+                                               class="form-control form-addtrip" id="not_listed" name="not_listed">
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <label class="label-addtrip" for="not_listed">My resort is not listed</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="custom_resort_roomtype" style="display: none">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="pricevalue" class="label-addtrip">Custom resort</label>
+                                    <input type="text" class="form-control form-addtrip" id="custom_resort"
+                                           placeholder="Custom resort" name="custom_resort"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="reservationnum" class="label-addtrip">Custom roomtype</label>
+
+                                    <input type="text" class="form-control form-addtrip"
+                                           placeholder="Custom roomtype" name="custom_roomtype" id="custom_roomtype"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- resort and roomtype -->
+                        <div id="resort_roomtype">
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="resortsnames" class="label-addtrip">Resort</label>
+                                        <div class="wrap-select-arrow">
+                                            <select class="form-control form-addtrip" id="resortsnames"
+                                                    name="resortsnames">
+                                                <option value="">Select</option>
+                                                {% for resort in resorts %}
+                                                    <option value="{{ resort.id }}">{{ resort.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                            <div class="select-arrow">
+                                                <div class="arrow-up"></div>
+                                                <div class="arrow-down"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label for="roomtype" class="label-addtrip">Room Type</label>
+                                        <div class="wrap-select-arrow">
+                                            <select class="form-control form-addtrip" id="roomtype" name="roomtype">
+
+                                            </select>
+                                            <div class="select-arrow">
+                                                <div class="arrow-up"></div>
+                                                <div class="arrow-down"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="date" class="label-addtrip">CheckIn</label>
+                                    <!-- Datepicker as text field -->
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-addtrip checkindate" id="date"
+                                               name="date" placeholder="dd.mm.yyyy" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="dates" class="label-addtrip">CheckOut</label>
+                                    <!-- Datepicker as text field -->
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-addtrip checkout-date" id="checkout"
+                                               name="checkout" placeholder="dd.mm.yyyy" disabled="" required>
+
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-calendar"></i>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                                                            <label for="checkout" class="checkout_input" style="display:none;color: red">Please
+                                            select checkout date</label>
+                                        <label for="checkout" class="checkout" style="display:none;color: red">Checkout
+                                            is greater than checkin</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="adults" class="label-addtrip">Adults</label>
+                                    <div class="wrap-select-arrow">
+                                        <select class="form-control form-addtrip" id="adults" name="adults" required>
+                                            <option value="">Select</option>
+                                            <option value="1">Option 2</option>
+                                            <option value="2">Option 3</option>
+                                            <option value="3">Option 4</option>
+                                        </select>
+                                        <div class="select-arrow">
+                                            <div class="arrow-up"></div>
+                                            <div class="arrow-down"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="childrendrplist" class="label-addtrip">Children</label>
+                                    <div class="wrap-select-arrow">
+                                        <select class="form-control form-addtrip" id="childrendrplist"
+                                                name="childrendrplist" required>
+                                            <option value="">Select</option>
+                                            <option value="0">0</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        </select>
+                                        <div class="select-arrow">
+                                            <div class="arrow-up"></div>
+                                            <div class="arrow-down"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group child-1-show">
+                                    <label for="childone" class="label-addtrip">Child 1</label>
+                                    <div class="wrap-select-arrow">
+                                        <select class="form-control form-addtrip" id="childone" name="childone">
+                                            <option value="">age</option>
+                                            {% for age in ages %}
+                                                <option value="{{ age }}">{{ age }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="select-arrow">
+                                            <div class="arrow-up"></div>
+                                            <div class="arrow-down"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group child-2-show">
+                                    <label for="childtwo" class="label-addtrip">Child 2</label>
+                                    <div class="wrap-select-arrow">
+                                        <select class="form-control form-addtrip" id="childtwo" name="childtwo">
+                                            <option value="">age</option>
+                                            {% for age in ages %}
+                                                <option value="{{ age }}">{{ age }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="select-arrow">
+                                            <div class="arrow-up"></div>
+                                            <div class="arrow-down"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group child-3-show">
+                                    <label for="childthree" class="label-addtrip">Child 3</label>
+                                    <div class="wrap-select-arrow">
+                                        <select class="form-control form-addtrip" id="childthree" name="childthree">
+                                            <option value="">age</option>
+                                            {% for age in ages %}
+                                                <option value="{{ age }}">{{ age }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="select-arrow">
+                                            <div class="arrow-up"></div>
+                                            <div class="arrow-down"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                                <div class="form-group child-4-show">
+                                    <label for="childfour" class="label-addtrip">Child 4</label>
+                                    <div class="wrap-select-arrow">
+                                        <select class="form-control form-addtrip" id="childfour" name="childfour">
+                                            <option value="">age</option>
+                                            {% for age in ages %}
+                                                <option value="{{ age }}">{{ age }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="select-arrow">
+                                            <div class="arrow-up"></div>
+                                            <div class="arrow-down"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-md-12 col-sm-6">
+                                <div class="form-group">
+                                    <label for="discount" class="label-addtrip">Discount %</label>
+                                    <input type="number" class="form-control form-addtrip" id="discount" name="discount"
+                                           value="25"
+                                           placeholder="$" min="0" max="99" required/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                                <input type="submit" class="btn btn-lg btn-default btnstart" id="save_trip"
+                                       value="SAVE TRIP"/>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% include 'trip_sidepanel.html' %}
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <!-- Validation -->
+
+    <script>
+        $("#save_trip").click(function () {
+            var checkout = $("#checkout").val();
+            if (checkout == "") {
+                $(".checkout_input").css("display", "block");
+                return false;
+            }
+            else if (checkout < $('#date').val()) {
+                $(".checkout").css("display", "block");
+            }
+            else {
+                $(".username").css("display", "none");
+                return true;
+            }
+
+        });
+        $('#not_listed').click(function () {
+
+            if ($(this).prop("checked") == true) {
+                $("#custom_resort_roomtype").css("display", "block");
+                $("#resort_roomtype").css("display", "none");
+            }
+            else if ($(this).prop("checked") == false) {
+                $("#custom_resort_roomtype").css("display", "none");
+                $("#resort_roomtype").css("display", "block");
+            }
+        });
+        $(document).ready(function () {
+
+            var date_input = $('input[name="date"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+            var date_input = $('input[name="checkout"]'); //our date input has the name "date"
+            var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+            date_input.datepicker({
+                format: 'mm/dd/yyyy',
+                container: container,
+                todayHighlight: true,
+                autoclose: true,
+            })
+            $("#reservationnotes").keypress(function (e) {
+                var key = e.keyCode;
+                if (key >= 48 && key <= 57) {
+                    e.preventDefault();
+                }
+            });
+            {#            $('#pricevalue,#reservationnum').keypress(function (event) {#}
+            {#                if (event.which != 46 && (event.which < 47 || event.which > 59)) {#}
+            {#                    event.preventDefault();#}
+            {#                    if ((event.which == 46) && ($(this).indexOf('.') != -1)) {#}
+            {#                        event.preventDefault();#}
+            {#                    }#}
+            {#                }#}
+            {#            });#}
+        });
+
+        $("#resortsnames").change(function () {
+            $('#roomtype').html('');
+            if (this.value) {
+                $.ajax({
+                    url: '/trips/rooms/',
+                    data: {
+                        'resort_id': this.value,
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+
+                        if (data.length != 0) {
+
+                            var roomlist = '<option value="">Select</option>';
+                            $.each(data, function (i, obj) {
+                                roomlist += '<option value="' + obj.id + '">' + obj.name + '</option>';
+                            });
+                            $('#roomtype').html(roomlist);
+                        }
+                    }
+                });
+            }
+
+
+        });
+
+        var cnt = 0;
+        $("#checkout").change(function () {
+            cnt++;
+            if (cnt == 2) {
+                if ($("#checkout").val() <= $("#date").val()) {
+                    alert("Checkout is greater than checkin !")
+                }
+            }
+            if (cnt == 3) {
+                cnt = 0;
+            }
+
+        });
+        $("#childrendrplist").change(function () {
+            var numInputs = $(this).val();
+            if (numInputs == "" || numInputs == "0") {
+                $(".child-1-show,.child-2-show,.child-3-show,.child-4-show").css("display", "none");
+            }
+            if (numInputs == "1") {
+                $(".child-1-show").css("display", "block");
+                $(".child-2-show,.child-3-show,.child-4-show").css("display", "none");
+            }
+            else if (numInputs == "2") {
+                $(".child-1-show,.child-2-show").css("display", "block");
+                $(".child-3-show,.child-4-show").css("display", "none");
+            }
+            else if (numInputs == "3") {
+                $(".child-1-show,.child-2-show,.child-3-show").css("display", "block");
+                $(".child-4-show").css("display", "none");
+            }
+            else if (numInputs == "4") {
+                $(".child-1-show,.child-2-show,.child-3-show,.child-4-show").css("display", "block");
+            }
+        });
+
+        $(".checkindate").focus(function () {
+            //alert();
+            $(".checkout-date").removeAttr('disabled');
+        });
+    </script>
+
+    <!-- End -->
+
+{% endblock %}

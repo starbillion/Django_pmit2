@@ -1,0 +1,163 @@
+{% load staticfiles %}
+{% load hijack_tags %}
+{% load avatar_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inside App</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <!-- Font Awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <!-- Custom css-->
+    <link href="/static/css/insideapp.css" type="text/css" rel="stylesheet">
+    <!-- Tab Section -->
+    <link href="/static/css/easy-responsive-tabs.css" type="text/css" rel="stylesheet">
+    <!-- End -->
+    <link rel="stylesheet" type="text/css" href="{% static '/hijack/hijack-styles.css' %}"/>
+    <link href="/static/css/addtrip.css" type="text/css" rel="stylesheet">
+    <!-- Include Date Range Picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    {% block header %}
+    {% endblock %}
+    {% comment %} {{ form.media }} {% endcomment %}
+</head>
+<body>
+{% hijack_notification %}
+<!-- Navigationbar -->
+
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top navbar-inside nav-fixed-color-change">
+    <a href="{% url 'home' %}" class="navbar-brand nav-brands-inside">
+        <img src="/static/images/logo2.png" class="img-responsive img-logo-twos" alt=""/>
+    </a>
+    <button type="button" class="navbar-toggler navbar-toggle-inside" data-toggle="collapse"
+            data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collection of nav links and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-collaie" id="collapsibleNavbar">
+        <ul class="navbar-nav navbar-right navbar-rights-inside ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    <div class="profile_img">
+                        <span class="prfil-img">{% avatar user 65 id="user_avatar" alt="" %}</span>
+                        <div class="user-name">
+
+                            <p>{{ user.first_name }} {{ user.last_name }}</p>
+                            <span>({{ user.email }})</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+                <div class="dropdown-menu user-menu">
+
+                    <a href="{% url 'trips:all' %}" class="dropdown-item"><i class="fas fa fa-suitcase"></i> My
+                        Trips</a>
+                    <a href="{% url 'settings' %}" class="dropdown-item"><i class="fas fa fa-info-circle"></i> Account
+                        Settings</a>
+                    <a href="{% url 'password' %}" class="dropdown-item"><i class="fas fa fa-key"></i> Change
+                        Password</a>
+                    <a href="https://pricematchit.freshdesk.com" class="dropdown-item"><i
+                            class="fas fa fa-question"></i> Help</a>
+                    <a href="{% url 'logout' %}" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Log out</a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!-- End -->
+
+<!-- Panel and Tab -->
+{% if user.is_authenticated %}
+    {% block body %}
+    {% endblock %}
+{% endif %}
+
+
+<!-- End -->
+
+<!-- End -->
+
+
+<!-- End -->
+
+<!-- Footer -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <p class="copyrights-inside">&copy; 2018.
+                PriceMatchIt, LLC. All Rights Reserved.
+                <a href="{% url 'terms' %}">Terms</a>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+            <div class="foo-desc-inside social-icons-inside">
+                <a href="https://www.facebook.com/pricematchit">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.twitter.com/pricematchit">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/pricematchit">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End -->
+
+<!-- Horizontal Tab Script -->
+
+<!-- end -->
+
+<!-- OnScroll NavigationBar Background Color change -->
+<script>
+    $(document).ready(function () {
+        $(document).scroll(function () {
+            var navie = $(".nav-fixed-color-change");
+            navie.toggleClass('scrolled', $(this).scrollTop() > 10);
+        });
+    });
+</script>
+<!-- End -->
+
+
+{% block footer %}
+{% endblock %}
+{% comment %} Freshdesk Feedback Widget {% endcomment %}
+<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+<script type="text/javascript">
+    FreshWidget.init("", {
+        "queryString": "&widgetType=popup&captcha=yes",
+        "utf8": "✓",
+        "widgetType": "popup",
+        "buttonType": "text",
+        "buttonText": "Contact Us & Suport",
+        "buttonColor": "white",
+        "buttonBg": "#f8931e",
+        "alignment": "2",
+        "offset": "530px",
+        "formHeight": "400px",
+        "captcha": "yes",
+        "url": "https://pricematchit.freshdesk.com"
+    });
+</script>
+
+</body>
+</html>

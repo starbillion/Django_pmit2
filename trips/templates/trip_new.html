@@ -1,0 +1,67 @@
+{% extends 'inside_main.html' %} {% block body %}
+{% load humanize %}
+{% load bootstrap4 %}
+<!-- Panel and Tab -->
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="card panelde-inside resp-tab-item">
+			<div class="card-header panel-headings-inside">
+				<section class="trips-inside">
+					<h3>add trip</h3>
+				</section>
+			</div>
+			<div class="card-body panel-inside-firstie">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+						<div class="add-resort-btn-posi">
+							<a href="{% url 'trips:new_trip' %}" class="btn btn-lg btn-default btnaddresortie">
+								<i class="fas fa-plus-circle"></i> &nbsp;Add Trip</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+						<!-- Tab -->
+
+						<div id="horizontalTab" class="margi-minus-inside">
+							<ul class="resp-tabs-list resp-tabs-list-one">
+								<a href="{% url 'trips:all' %}">
+									<li class="{% if 'sarchive' in request.path %} resp-tab-active{% endif %}" role="tab">Active</li>
+								</a>
+								<a href="{% url 'trips:archive_trip' %}">
+									<li class="{% if 'archive' in request.path %} resp-tab-active{% endif %}" role="tab">Archive</li>
+								</a>
+							</ul>
+							<div class="resp-tabs-container">
+
+								<div>
+									
+									<div class="row">
+										<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+												<form role="form" method="POST" class="post-form">{% csrf_token %}
+														{% bootstrap_form form %}
+														{% buttons %}
+															<button type="submit" class="save btn btn-default btnaddresortie">Save Trip</button>
+															<a href="{% url 'trips:all' %}">Cancel</a>
+															{% endbuttons %}
+															
+													</form>
+										</div>
+									</div>
+
+
+									<hr class="inside-hrie"> 
+								</div>
+
+							</div>
+							
+						</div>
+						{% comment %} </div> {% endcomment %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

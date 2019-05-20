@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+{% block main_panel %}
+    <!-- First Part Start -->
+    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+        <div class="signup-first">
+            <div class="card-body panel-form">
+                <p>Please confirm your email address to complete the registration. </p>
+                <hr>
+                <div class="add-resort-btn-posi">
+                    <a href="{% url 'account_activation_resent' %}" class="btn btn-lg btn-default btnaddresortie">
+                        <i class="fas fa-paper-plane"></i> Resend confirmation email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- First Part End -->
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+ {% comment %} here-{{ backends.associated}}-end
+ <br/>
+ here-{{ user.social_auth}}-end
+ <br/>
+ here-{{ user.social_auth.provider}}-end {% endcomment %}
+
+{% block main_panel %}
+            <!-- First Part Start -->
+            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12">
+              <div class="signup-first">
+                <div class="panel-body panel-form text-center">
+                    {% for message in messages %}
+                    <p style="color: {% if message.tags == 'success' %}green{% elif message.tags == 'error' %}red{% endif %}">
+                      {{ message }}
+                    </p>
+                  {% endfor %}
+                  {% if user.is_authenticated %}
+                  <p>You are signed in as<br/>
+                    <strong>{{ user.first_name }} {{ user.last_name}} </strong><br/>
+                    ({{user.email}})
+                    <br/>
+                    <br/>
+                  {% comment %} <p>Settings</p> {% endcomment %}
+                  
+                  {% if google_login %}
+                    {% comment %} <p>Connected to Google.</a></p> {% endcomment %}
+                    {% if can_disconnect %}
+                      <form method="post" action="{% url 'social:disconnect' 'google-oauth2' %}">
+                        {% csrf_token %}
+                        
+                        <button type="submit" class="btn btn-med btn-default btnsignin">Disconnect from Google</button>
+                      
+                      </form>
+                    {% else %}
+                      <button type="button" disabled>Disconnect from Google</button>
+                      <p style="color: red">You must <a href="{% url 'password' %}">create a password</a> before disconnecting from Google.</p>
+                    {% endif %}
+                  {% else %}
+                    <a href="{% url 'social:begin' 'google-oauth2' %}">Connect to Google</a>
+                  {% endif %}
+                      <br />
+
+                  {% if facebook_login %}
+                    {% comment %} <p>Connected to Facebook</a></p> {% endcomment %}
+                    {% if can_disconnect %}
+                      <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-med btn-default btnsignin">Disconnect from Facebook</button>
+                      </form>
+                    {% else %}
+                      <button type="button" disabled>Disconnect from Facebook</button>
+                      <p style="color: red">You must <a href="{% url 'password' %}">create a password</a> before disconnecting from Facebook.</p>
+                    {% endif %}
+                  {% else %}
+                    <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+                  {% endif %}
+                  <br/>
+                  <p><a href="{% url 'trips:all' %}"> Go to My Trips</a></p>
+
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- First Part End -->
+          {% endblock %}

@@ -1,0 +1,176 @@
+{% extends 'inside_main.html' %} {% block body %} {% load humanize %}
+    <!-- Panel and Tab -->
+
+    <div class="container-fluid">
+    <div class="row">
+    <div class="card panelde-inside resp-tab-item">
+        <div class="card-header panel-headings-inside">
+            <section class="trips-inside">
+                <h3>my trips</h3>
+            </section>
+        </div>
+        <div class="card-body panel-inside-firstie">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                    <div class="add-resort-btn-posi" {% if user.profile.trip_cnt == trip_cnt %} data-toggle="tooltip"
+                         title="Your maximum number of trips has been met and to contact support if you have any questions" {% endif %}>
+                        <a href="{% url 'trips:new_trip' %}" class="btn btn-lg btn-default btnaddresortie"
+                                {% if user.profile.trip_cnt == trip_cnt %}
+                           style="pointer-events: none;opacity: 0.4;"{% endif %}>
+                            <i class="fas fa-plus-circle"></i> &nbsp;Add Trip</a>
+                    </div>
+                    <div class="add-resort-btn-posi" id="tooltip" {% if user.profile.trip_cnt == trip_cnt %}
+                         data-toggle="tooltip"
+                         title="Your maximum number of trips has been met and to contact support if you have any questions"{% endif %}>
+                        <a href="{% url 'trips:new_trip2' %}" class="btn btn-lg btn-default btnaddresortie"
+                                {% if user.profile.trip_cnt == trip_cnt %}
+                           style="pointer-events: none;opacity: 0.4;"{% endif %}>
+                            <i class="fas fa-plus-circle"></i> &nbsp;Add Trip 2</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+                    <!-- Tab -->
+                    <div id="horizontalTab" class="margi-minus-inside">
+                        <ul class="resp-tabs-list resp-tabs-list-one">
+                            <a href="{% url 'trips:all' %}">
+                                <li class="{% if 'archive' not in request.path %} resp-tab-active{% endif %}">Active
+                                </li>
+                            </a>
+                            <a href="{% url 'trips:archive_trip' %}">
+                                <li class="{% if 'archive' in request.path %} resp-tab-active{% endif %}">Archive</li>
+                            </a>
+                        </ul>
+                        <div class="resp-tabs-container">
+
+                            <div>
+                                {% if mytrip_list %}
+                                    {% for mytrip in mytrip_list %}
+
+                                        <div class="row trip">
+                                            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12">
+                                                <div class="media media-mob-insideapp">
+                                                    <div class="media-lefts-inside">
+                                                        <img src="/static/images/5.jpg"
+                                                             class="media-object media-inside-img">
+                                                        <p>{% if mytrip.active == False %}
+                                                            <div class="archived">Archived Trip</div>
+                                                        {% endif %}
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="media-body">
+                                                        <h4 class="media-heading resort-names">{{ mytrip.resort.name }} </h4>
+                                                        <p class="resort-desc">
+                                                            <span class="dri">{{ mytrip.reservation_number }}:</span>
+                                                            <span class="resort-notes">{{ mytrip.notes }}</span>
+                                                        </p>
+                                                        <p>
+                                                            <span class="ocen-inside">{{ mytrip.roomtype.name }}</span>
+                                                        </p>
+
+                                                        <div class="clearfix"></div>
+                                                        <div class="july-desc">
+                                                            <span class="btn btn-lg btn-default btnjuly btnjuly-one-mob">{{ mytrip.checkin }}</span>
+                                                            <span class="july-dates july-dates-oie to-mob"> to</span>
+                                                            <span class="btn btn-lg btn-default btnjuly btnjuly-one-mob">{{ mytrip.checkout }}</span>
+                                                        </div>
+
+                                                        <p>
+														<span class="adults-numie"> {{ mytrip.adults }} ADULTS, {{ mytrip.kids }}
+                                                            {% if mytrip.kids == 1 %} CHILD
+                                                            {% else %}
+                                                                CHILDREN
+                                                            {% endif %}
+															 </span>
+                                                            {% if mytrip.kids > 0 %}
+                                                                <span class="guets-numie">({{ mytrip.kids_ages }})</span>{% endif %}
+                                                        </p>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-xl-3 col-lg-3 col-md-8 col-sm-8">
+                                                {% comment %}
+											<p class="resort-value-insides">$3,650</p> {% endcomment %}
+                                                <p class="match-save">PriceMatchIt Savings</p>
+                                                <p class="match-save-dollar">${{ mytrip.savings }}</p>
+                                                <p class="match-original-dollar">PriceMatchit Price:
+                                                    ${{ mytrip.current_price|intcomma }}</p>
+                                                <p class="match-original-dollar">Original Booking:
+                                                    ${{ mytrip.original_price|intcomma }}</p>
+
+                                            </div>
+
+                                            <div class="col-xl-1 col-lg-1 col-md-4 col-sm-4">
+                                                <div class="all-icons-inside-1">
+                                                    <a href="/trips/edit_trip/{{ mytrip.id }}/" data-toggle="tooltip"
+                                                       title="Update Trip">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                </div>
+                                                <div class="all-icons-inside-2">
+                                                    <a href="/trips/duplicate/{{ mytrip.id }}/" data-toggle="tooltip"
+                                                       title="Duplicate Trip" {% if user.profile.trip_cnt == trip_cnt %}
+                                                       style="pointer-events: none;opacity: 0.4;"{% endif %}>
+                                                        <i class="fas fa-clone"></i>
+                                                    </a>
+                                                </div>
+                                                {% if 'archive' not in request.path %}
+                                                    <div class="all-icons-inside-3">
+                                                        <a href="/trips/archive/{{ mytrip.id }}/" data-toggle="tooltip"
+                                                           title="Archive Trip">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </div>
+                                                {% endif %} {% if 'archive' in request.path %}
+                                                <div class="all-icons-inside-3">
+                                                    <a href="/trips/restore_trip/{{ mytrip.id }}/" data-toggle="tooltip"
+                                                       title="Restore Trip">
+                                                        <i class="fas fa-recycle"></i>
+                                                    </a>
+                                                </div>
+                                            {% endif %}
+                                            </div>
+                                        </div>
+
+
+                                        <hr class="inside-hrie"> {% endfor %} {% endif %}
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %} {% block footer %}
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            if ($(window).width() > 767) {
+                $(".resp-tabs-list-one .resp-tab-item").click(function () {
+                    //alert();
+                    $(".panelde-inside").css("width", "100%");
+                });
+            } else if ($(window).width() < 767) {
+                $(".panelde-inside").css("width", "100%");
+            }
+        });
+    </script>
+{% endblock %}
